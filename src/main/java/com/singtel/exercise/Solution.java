@@ -29,7 +29,7 @@ class Duck extends Bird {
 class Chicken extends Bird {
 	
 	void sing() {
-		System.out.println("Cluck, cluck”");
+		System.out.println("Cluck, cluck");
 	}
 	
 	void fly() {
@@ -38,6 +38,12 @@ class Chicken extends Bird {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+}
+
+class Rooster extends Chicken {
+	void sing() {
+		System.out.println("“Cock-a-doodle-doo");
 	}
 }
 
