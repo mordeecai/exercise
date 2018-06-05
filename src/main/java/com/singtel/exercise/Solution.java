@@ -16,6 +16,31 @@ class Bird extends Animal {
 	}
 }
 
+class Duck extends Bird {
+	void swim() {
+		System.out.println("I am swimming");
+	}
+	
+	void sing() {
+		System.out.println("Quack, quack");
+	}
+}
+
+class Chicken extends Bird {
+	
+	void sing() {
+		System.out.println("Cluck, cluck”");
+	}
+	
+	void fly() {
+		try {
+			throw new Exception("A chicken cannot fly!");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
 public class Solution {
 	public static void main(String[] args) {
 		Bird bird = new Bird();
