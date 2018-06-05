@@ -1,5 +1,11 @@
 package com.singtel.exercise;
 
+interface Swimmer {
+	default void swim() {
+		System.out.println("I am swimming!");
+	}
+}
+
 class Animal {
 	void walk() {
 		System.out.println("I am walking");
@@ -12,7 +18,7 @@ class Bird extends Animal {
 	}
 	
 	void sing() {
-		System.out.println("I am singing");
+		say("I am singing");
 	}
 	
 	void say(String isSaying) {
@@ -20,10 +26,7 @@ class Bird extends Animal {
 	}
 }
 
-class Duck extends Bird {
-	void swim() {
-		System.out.println("I am swimming");
-	}
+class Duck extends Bird implements Swimmer {
 	
 	void sing() {
 		say("Quack, quack");
@@ -53,13 +56,60 @@ class Rooster extends Chicken {
 
 class Parrot extends Bird {
 	String isSaying;
-	public Parrot(String isSaying) {
+	Parrot(String isSaying) {
 		this.isSaying = isSaying;
 	}
 	
 	void sing() {
 		say(isSaying);
 	}
+}
+
+class Fish extends Animal implements Swimmer {
+	String size;
+	String color;
+	
+	Fish() {
+		
+	}
+	
+	Fish(String size, String color) {
+		this.size = size;
+		this.color = color;
+	}
+	
+	void walk() {
+		try {
+			throw new Exception("Fish cannot walk!");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+
+class Shark extends Fish {
+	Shark() {
+		super("large", "grey");
+	}
+	
+	void eat(Fish otherFish) {
+		System.out.println("I eat " + otherFish.getClass().getSimpleName());
+	}
+}
+
+class ClownFish extends Fish {
+	ClownFish() {
+		super("small", "orange");
+	}
+	
+	void jokes() {
+		System.out.println("This is a joke!");
+	}
+}
+
+class Dolphin extends Animal implements Swimmer {
+	
 }
 
 public class Solution {
@@ -86,5 +136,18 @@ public class Solution {
 		
 		Parrot parrotLivingWithRooster = new Parrot("Cock-a-doodle-doo");
 		parrotLivingWithRooster.sing();
+		
+		Fish fish = new Fish();
+		fish.walk();
+		fish.swim();
+		
+		Shark shark = new Shark();
+		shark.eat(fish);
+		
+		ClownFish clownFish = new ClownFish();
+		clownFish.jokes();
+		
+		Dolphin dolphin = new Dolphin();
+		dolphin.swim();
 	}
 }
