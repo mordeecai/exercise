@@ -14,6 +14,10 @@ class Bird extends Animal {
 	void sing() {
 		System.out.println("I am singing");
 	}
+	
+	void say(String isSaying) {
+		System.out.println(isSaying);
+	}
 }
 
 class Duck extends Bird {
@@ -22,14 +26,14 @@ class Duck extends Bird {
 	}
 	
 	void sing() {
-		System.out.println("Quack, quack");
+		say("Quack, quack");
 	}
 }
 
 class Chicken extends Bird {
 	
 	void sing() {
-		System.out.println("Cluck, cluck");
+		say("Cluck, cluck");
 	}
 	
 	void fly() {
@@ -43,7 +47,18 @@ class Chicken extends Bird {
 
 class Rooster extends Chicken {
 	void sing() {
-		System.out.println("“Cock-a-doodle-doo");
+		say("Cock-a-doodle-doo");
+	}
+}
+
+class Parrot extends Bird {
+	String isSaying;
+	public Parrot(String isSaying) {
+		this.isSaying = isSaying;
+	}
+	
+	void sing() {
+		say(isSaying);
 	}
 }
 
@@ -53,5 +68,23 @@ public class Solution {
 		bird.walk();
 		bird.fly();
 		bird.sing();
+		
+		Duck duck = new Duck();
+		duck.sing();
+		
+		Chicken chicken = new Chicken();
+		chicken.sing();
+		
+		Rooster rooster = new Rooster();
+		rooster.sing();
+		
+		Parrot parrotLivingWithDogs = new Parrot("Woof, woof");
+		parrotLivingWithDogs.sing();
+		
+		Parrot parrotLivingWithCats = new Parrot("Meow");
+		parrotLivingWithCats.sing();
+		
+		Parrot parrotLivingWithRooster = new Parrot("Cock-a-doodle-doo");
+		parrotLivingWithRooster.sing();
 	}
 }
