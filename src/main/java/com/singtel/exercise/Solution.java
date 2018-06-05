@@ -6,16 +6,19 @@ interface Swimmer {
 	}
 }
 
+interface Flyer {
+	default void fly() {
+		System.out.println("I am flying!");
+	}
+}
+
 class Animal {
 	void walk() {
 		System.out.println("I am walking");
 	}
 }
 
-class Bird extends Animal {
-	void fly() {
-		System.out.println("I am flying");
-	}
+class Bird extends Animal implements Flyer {
 	
 	void sing() {
 		say("I am singing");
@@ -39,7 +42,8 @@ class Chicken extends Bird {
 		say("Cluck, cluck");
 	}
 	
-	void fly() {
+	@Override
+	public void fly() {
 		try {
 			throw new Exception("A chicken cannot fly!");
 		} catch (Exception e) {
@@ -112,6 +116,32 @@ class Dolphin extends Animal implements Swimmer {
 	
 }
 
+class Butterfly extends Animal implements Flyer {
+	String form = "Caterpillar";
+	boolean canFly = false;
+	boolean canWalk = true;
+	
+	void transform() {
+		this.form = "Butterfly";
+		this.canFly = true;
+		this.canWalk = false;
+	}
+	
+	@Override
+	public void fly() {
+		if(!canFly) {
+			try {
+				throw new Exception(form + " cannot fly!");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		} else {
+			System.out.println("I am flying!");
+		}
+	}
+}
+
 public class Solution {
 	public static void main(String[] args) {
 		Bird bird = new Bird();
@@ -149,5 +179,12 @@ public class Solution {
 		
 		Dolphin dolphin = new Dolphin();
 		dolphin.swim();
+		
+		Butterfly butterfly = new Butterfly();
+		butterfly.fly();
+		
+		butterfly.transform();
+		butterfly.fly();
+		butterfly.walk();
 	}
 }
